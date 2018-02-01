@@ -15,8 +15,8 @@ public class Start implements Activity {
     public Start waitToLoad(int waitTime) {
         try {
             MyLogger.log.info("Waiting to load Start screen");
-            uiObject.signIn().waitToAppear(waitTime);
-            uiObject.createAccount().waitToAppear(waitTime);
+            uiObject.buttonSignIn().waitToAppear(waitTime);
+            uiObject.buttonCreateAccount().waitToAppear(waitTime);
             uiObject.slide().waitToAppear(waitTime);
             uiObject.slider().waitToAppear(waitTime);
             return Android.app.bookieApp.start;
@@ -28,7 +28,7 @@ public class Start implements Activity {
     public void tapSignIn() {
         try {
             MyLogger.log.info("Tapping on the SignIn Button");
-            uiObject.signIn().tap();
+            uiObject.buttonSignIn().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap SignIn Button, element absent or blocked");
         }
@@ -37,7 +37,7 @@ public class Start implements Activity {
     public void tapCreateAccount() {
         try {
             MyLogger.log.info("Tapping on the CreateAccount Button");
-            uiObject.createAccount().tap();
+            uiObject.buttonCreateAccount().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap CreateAccount Button, element absent or blocked");
         }

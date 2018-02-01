@@ -7,7 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 public class Main implements Activity {
 
-    MainUiObjects uiObject = new MainUiObjects();
+    public MainUiObjects uiObject = new MainUiObjects();
 
     @Override
     public Object waitToLoad(int waitTime) {

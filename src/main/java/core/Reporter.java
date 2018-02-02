@@ -45,8 +45,6 @@ public class Reporter {
         } catch (TransformerException | IOException | SAXException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -81,14 +79,52 @@ public class Reporter {
         Document doc = builder.parse(file);
         Node testsuites = doc.getFirstChild();
         NodeList suites = doc.getElementsByTagName("testsuite");
-        for (int index = 0;index<suites.getLength();index++){
+        for (int index = 0; index < suites.getLength(); index++) {
             Node suite = suites.item(index);
-            String existing_suite= suite.getAttributes().getNamedItem("name").getNodeValue();
-            if (existing_suite.equals(suiteName)){
-                
+            String existing_suite = suite.getAttributes().getNamedItem("name").getNodeValue();
+            if (existing_suite.equals(suiteName)) {
+                System.out.println("Suite already exists. making changes to it ...");
+                Element testcase = doc.createElement("testcase");
+                testcase.setAttribute("name", testName);
+                testcase.setAttribute("status", testResults);
+
+                Node test = suite.getAttributes().getNamedItem("test");
+                Node pass = suite.getAttributes().getNamedItem("pass");
+                Node failures = suite.getAttributes().getNamedItem("failues");
+                int t = Integer.valueOf(test.getNodeValue()) + 1;
+                int p = Integer.valueOf(pass.getNodeValue());
+                int f = Integer.valueOf(failures.getNodeValue());
+
+                if (testResults.equals("FAIL")) {
+                    f++;
+                    Element failure = doc.createElement("failure");
+                    testcase.appendChild(failure);
+                } else p++;
+
+                test.setNodeValue(String.valueOf(t));
+                failures.setNodeValue(String.valueOf(f));
+                pass.setNodeValue(String.valueOf(p));
+                suite.appendChild(testcase);
+                return doc;
             }
         }
+
+        Element testsuite = doc.createElement("testsuite");
+        testsuite.setAttribute("name", suiteName);
+        testsuite.setAttribute("tests", "1");
+        testsuite.setAttribute("failures", testResults.equals("FAIL") ? "1" : "0");
+        testsuite.setAttribute("pass", testResults.equals("PASS") ? "1" : "0");
+
+        Element testcase = doc.createElement("testcase");
+        testcase.setAttribute("name", testName);
+        testcase.setAttribute("status", testResults);
+
+        if (testResults.equals("FAIL")) {
+            Element failure = doc.createElement("failure");
+            testcase.appendChild(failure);
+        }
+        testsuites.appendChild(testsuite);
+        testsuite.appendChild(testcase);
         return doc;
     }
-
 }

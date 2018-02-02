@@ -1,7 +1,7 @@
 package core.managers;
 
-import api.android.Android;
 import core.MyLogger;
+import core.Reporter;
 import core.Retry;
 import core.TestInfo;
 import org.junit.Before;
@@ -13,6 +13,7 @@ import org.junit.runner.Description;
 public class TestManager {
 
     public static TestInfo testInfo = new TestInfo();
+    private static Reporter reporter;
 
     @Rule
     public Retry retry = new Retry(3);
@@ -28,13 +29,23 @@ public class TestManager {
         public void failed(Throwable t, Description description) {
             MyLogger.log.info("Test Failed:");
             TestInfo.printResults();
-
+            if (TestManager.reporter != null) {
+                TestManager.reporter.update(TestInfo.suite(), TestInfo.name(), "FAIL");
+            }
         }
 
         @Override
         public void succeeded(Description description) {
             MyLogger.log.info("Test Passed:");
             TestInfo.printResults();
+            if (TestManager.reporter != null) {
+                TestManager.reporter.update(TestInfo.suite(), TestInfo.name(), "PASS");
+            }
         }
     };
+
+    public static void setReporter(Reporter reporter) {
+        TestManager.reporter = reporter;
+
+    }
 }

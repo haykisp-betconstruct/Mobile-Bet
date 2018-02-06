@@ -19,7 +19,7 @@ public class Main implements Activity {
             uiObject.actionMore().waitToAppear(waitTime);
             uiObject.buttonFab().waitToAppear(waitTime);
             uiObject.buttonSearch().waitToAppear(waitTime);
-            return Android.app.bookieApp.login;
+            return Android.app.bookieApp.main;
         } catch (AssertionError e) {
             throw new AssertionError("Main screen failed to load/open");
         }

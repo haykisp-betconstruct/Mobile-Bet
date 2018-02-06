@@ -16,7 +16,7 @@ public class Registration1 implements Activity {
             MyLogger.log.info("Waiting to load Registration1 screen");
             uiObject.buttonClose().waitToAppear(waitTime);
             uiObject.buttonAccept().waitToAppear(waitTime);
-            return Android.app.bookieApp.start;
+            return Android.app.bookieApp.registration1;
         } catch (AssertionError e) {
             throw new AssertionError("Registration1 screen failed to load/open");
         }

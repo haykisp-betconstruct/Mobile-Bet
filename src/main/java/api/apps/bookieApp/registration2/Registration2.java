@@ -18,7 +18,7 @@ public class Registration2 implements Activity {
             uiObject.fieldPassword().waitToAppear(waitTime);
             uiObject.fieldConfirmPassword().waitToAppear(waitTime);
             uiObject.buttonNext().waitToAppear(waitTime);
-            return Android.app.bookieApp.start;
+            return Android.app.bookieApp.registration2;
         } catch (AssertionError e) {
             throw new AssertionError("Registration2 screen failed to load/open");
         }

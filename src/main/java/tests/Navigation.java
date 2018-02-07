@@ -27,7 +27,8 @@ public class Navigation extends TestManager {
 
     @Test
     public void test1() {
-        testInfo.id("test1").name("Verify that Start screen has all the elements");
+        testInfo.name("TestCase1");
+
         Assert.assertTrue(bookieApp.start.uiObject.buttonSignIn().exists());
         Assert.assertTrue(bookieApp.start.uiObject.buttonCreateAccount().exists());
         Assert.assertTrue(bookieApp.start.uiObject.slide().exists());
@@ -37,8 +38,8 @@ public class Navigation extends TestManager {
     @Test
     public void test2() {
         bookieApp.start.tapSignIn();
-        bookieApp.login.waitToLoad(10);
-        testInfo.id("test2").name("Verify that Login screen has all the elements");
+        bookieApp.login.waitToLoad(15);
+        testInfo.name("TestCase2");
         Assert.assertTrue(bookieApp.login.uiObject.fieldUsername().exists());
         Assert.assertTrue(bookieApp.login.uiObject.fieldPassword().exists());
         Assert.assertTrue(bookieApp.login.uiObject.buttonForgotPassword().exists());

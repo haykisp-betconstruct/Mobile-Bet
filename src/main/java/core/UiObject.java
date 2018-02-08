@@ -1,6 +1,7 @@
 package core;
 
 import api.android.Android;
+import io.appium.java_client.TouchAction;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,13 @@ public class UiObject {
         if (isXpath()) element = Android.driver.findElementByXPath(locator);
         else element = Android.driver.findElementByAndroidUIAutomator(locator);
         return element.getAttribute("clickable").equals("true");
+    }
+
+    public boolean isCheckable() {
+        WebElement element;
+        if (isXpath()) element = Android.driver.findElementByXPath(locator);
+        else element = Android.driver.findElementByAndroidUIAutomator(locator);
+        return element.getAttribute("checkable").equals("true");
     }
 
     public boolean isEnabled() {
@@ -138,19 +146,6 @@ public class UiObject {
         return this;
     }
 
-//    public UiObject scrollTo(){
-//        if (locator.contains("text")) throw new RuntimeException("Scroll to method can only be used with text attribute and current locator: " +locator+ "does not contain any text attributes !");
-//        if(isXpath()) Android.driver.scrollTo(locator.substring((locator.indexOf("@text=\""), locator.indexOf("\"]")).replace("@text=\"", ""));
-//        else {
-//            String text;
-//            if (locator.contains("textContains")) text = locator.substring(locator.indexOf(".textContains\""), locator.indexOf("\")")).replace(".textContains(\"","");
-//            else text =locator.substring(locator.indexOf(".text(\""), locator.indexOf("\")")).replace(".text(\"","");
-//            Android.driver.scrollTo(text);
-//        }
-//        return this;
-//    }
-
-
     public UiObject waitToAppear(int seconds) {
         Timer timer = new Timer();
         timer.start();
@@ -160,5 +155,10 @@ public class UiObject {
         return this;
     }
 
+//    public UiObject scroll() {
+//        WebElement element;
+//        TouchAction tAction =new TouchAction(Android.driver);
+//        Android.driver.
+//    }
 
 }

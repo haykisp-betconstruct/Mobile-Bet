@@ -5,14 +5,21 @@ import core.UiSelector;
 
 public class LoginUiObjects {
     private static UiObject
-            fielduUername,
+            fieldUsername,
             fieldPassword,
             buttonForgotPassword,
             buttonSignIn,
-            buttonCreateAccount;
+            buttonCreateAccount,
+            buttonTogglePassword,
+            textWelcome,
+            textSignInToStart,
+            textForgotPassword,
+            textClickHere,
+            errorPassword;
+
 
     public UiObject buttonSignIn() {
-        if (buttonSignIn == null) buttonSignIn = new UiSelector().text("Sign in").makeUiObject();
+        if (buttonSignIn == null) buttonSignIn = new UiSelector().resourceId("com.betconstruct.bookie:id/sign_in").makeUiObject();
         return buttonSignIn;
     }
 
@@ -22,9 +29,9 @@ public class LoginUiObjects {
     }
 
     public UiObject fieldUsername() {
-        if (fielduUername == null)
-            fielduUername = new UiSelector().resourceId("com.betconstruct.bookie:id/username_edit_text").makeUiObject();
-        return fielduUername;
+        if (fieldUsername == null)
+            fieldUsername = new UiSelector().resourceId("com.betconstruct.bookie:id/username_edit_text").makeUiObject();
+        return fieldUsername;
     }
 
     public UiObject fieldPassword() {
@@ -37,5 +44,38 @@ public class LoginUiObjects {
         if (buttonForgotPassword == null)
             buttonForgotPassword = new UiSelector().text("Click here").makeUiObject();
         return buttonForgotPassword;
+    }
+
+    public UiObject buttonTogglePassword() {
+        if (buttonTogglePassword == null)
+            buttonTogglePassword = new UiSelector().resourceId("com.betconstruct.bookie:id/text_input_password_toggle").makeUiObject();
+        return buttonTogglePassword;
+    }
+
+    public UiObject textWelcome() {
+        if (textWelcome == null) textWelcome = new UiSelector().text("Welcome").makeUiObject();
+        return textWelcome;
+    }
+
+    public UiObject textSignInToStart() {
+        if (textSignInToStart == null)
+            textSignInToStart = new UiSelector().text("Sign in to your account to start").makeUiObject();
+        return textSignInToStart;
+    }
+
+    public UiObject textForgotPassword() {
+        if (textForgotPassword == null)
+            textForgotPassword = new UiSelector().text("Forgot Your password?").makeUiObject();
+        return textForgotPassword;
+    }
+
+    public UiObject textClickHere() {
+        if (textClickHere == null) textClickHere = new UiSelector().text("Click here").makeUiObject();
+        return textClickHere;
+    }
+
+    public UiObject errorPassword() {
+        if (errorPassword == null) errorPassword = new UiSelector().text("Password must be minimum of 6 characters").makeUiObject();
+        return errorPassword;
     }
 }

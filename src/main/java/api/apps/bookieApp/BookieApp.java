@@ -7,6 +7,7 @@ import api.apps.bookieApp.registration1.Registration1;
 import api.apps.bookieApp.login.Login;
 import api.apps.bookieApp.registration2.Registration2;
 import api.apps.bookieApp.start.Start;
+import api.apps.bookieApp.welcome.Welcome;
 import api.interfaces.Application;
 import core.UiObject;
 
@@ -18,6 +19,7 @@ public class BookieApp implements Application {
     public Registration2 registration2 = new Registration2();
     public Main main = new Main();
     public Profile profile = new Profile();
+    public Welcome welcome = new Welcome();
 
     @Override
     public void forceStop() {

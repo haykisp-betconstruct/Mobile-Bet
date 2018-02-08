@@ -9,20 +9,15 @@ public class TestInfo {
             SUITE,
             ID,
             NAME,
-            NOTES,
-            EXPECTED,
-            ACTUAL,
-            VERSION;
+            STATUS;
+
 
     public void reset() {
         TIMESTAMP = null;
         SUITE = null;
         ID = null;
         NAME = null;
-        NOTES = null;
-        EXPECTED = null;
-        ACTUAL = null;
-        VERSION = null;
+        STATUS = null;
     }
 
     public TestInfo temestamp(String value) {
@@ -45,25 +40,11 @@ public class TestInfo {
         return this;
     }
 
-    public TestInfo notes(String value) {
-        NOTES = value;
+    public TestInfo status(String value) {
+        STATUS = value;
         return this;
     }
 
-    public TestInfo expected(String value) {
-        EXPECTED = value;
-        return this;
-    }
-
-    public TestInfo actual(String value) {
-        ACTUAL = value;
-        return this;
-    }
-
-    public TestInfo version(String value) {
-        VERSION = value;
-        return this;
-    }
 
     public static String timestamp() {
         return TIMESTAMP;
@@ -81,20 +62,8 @@ public class TestInfo {
         return NAME;
     }
 
-    public static String notes() {
-        return NOTES;
-    }
-
-    public static String expected() {
-        return EXPECTED;
-    }
-
-    public static String actual() {
-        return ACTUAL;
-    }
-
-    public static String version() {
-        return VERSION;
+    public static String status() {
+        return STATUS;
     }
 
     public static void printResults() {
@@ -102,6 +71,5 @@ public class TestInfo {
         MyLogger.log.info("Test Name: " + name());
         MyLogger.log.info("Test Suite: " + suite());
     }
-
 
 }

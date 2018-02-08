@@ -19,8 +19,6 @@ public class Runner {
         MyLogger.log.info(xmlLocation);
         TestManager.setReporter(new HTML(new File(xmlLocation)));
 
-
-
         try {
             DriverManager.createDriver();
             JUnitCore.runClasses(TestPrimer.class);

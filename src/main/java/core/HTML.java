@@ -35,24 +35,24 @@ public class HTML {
 
             writer.println("<table>");
             writer.println("<tr>" + timeStamp + "</tr>");
-            writer.println("<tr><th>Time</th><th>TestSuite</th><th>TestCase</th><th>Status</th></tr>");
+            writer.println("<tr><th>StartTime</th><th>Duration</th><th>TestSuite</th><th>TestCase</th><th>Status</th></tr>");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void update(String suiteName, String testName, String testResults) {
+    public void update(String duration, String suiteName, String testName, String testResults) {
         String time = new SimpleDateFormat("HH:mm:ss      dd/MM/yyyy").format(Calendar.getInstance().getTime());
-        writer.println("<tr><th>" + time + "</th>");
-        writer.println("<th>" + suiteName + "</th>");
-
-        writer.println("<th>" + testName + "</th>");
+        writer.println("<tr><td>" + time + "</td>");
+        writer.println("<td>" + duration + "</td>");
+        writer.println("<td>" + suiteName + "</td>");
+        writer.println("<td>" + testName + "</td>");
         if (testResults.equals("PASS"))
-            writer.println("<th style=\"color: green;\">" + testResults + "</th></tr>");
+            writer.println("<td style=\"color: green;\">" + testResults + "</td></tr>");
         else {
             if (testResults.equals("FAIL"))
-                writer.println("<th style=\"color: red;\">" + testResults + "</th></tr>");
-            else writer.println("<th>" + testResults + "</th></tr>");
+                writer.println("<td style=\"color: red;\">" + testResults + "</td></tr>");
+            else writer.println("<td>" + testResults + "</td></tr>");
         }
         writer.flush();
 

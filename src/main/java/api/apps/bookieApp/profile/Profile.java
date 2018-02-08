@@ -42,19 +42,14 @@ public class Profile implements Activity {
 
     }
 
-    public String getUsername() {
-        return uiObject.textUsername().getText();
-    }
-
-    public void tapMyBet(int index){
+    public void tapMyBet(int index) {
         try {
-            MyLogger.log.info("Trying to tap on "+index+"th bet");
+            MyLogger.log.info("Trying to tap on " + index + "th bet");
             uiObject.objectMyBet(index).tap();
-        }catch (NoSuchElementException e){
-            throw new AssertionError("Can't tap on "+index+"th bet");
+        } catch (NoSuchElementException e) {
+            throw new AssertionError("Can't tap on " + index + "th bet");
         }
     }
-
 
 
 }

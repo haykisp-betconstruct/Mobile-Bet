@@ -1,7 +1,6 @@
 package core.managers;
 
 import core.*;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
@@ -14,6 +13,7 @@ public class TestManager {
     public static TestInfo testInfo = new TestInfo();
     private static HTML reporter;
     protected long startTime, endTime;
+    protected String time;
 
     @Rule
     public Retry retry = new Retry(1);
@@ -23,17 +23,14 @@ public class TestManager {
         @Override
         public void failed(Throwable t, Description description) {
             endTime = System.currentTimeMillis();
-            if (TestManager.reporter != null) {
-                TestManager.reporter.update(millisToShortDHMS(endTime-startTime), TestInfo.suite(), TestInfo.name(), "FAIL");
-            }
+            TestManager.reporter.update(time, millisToShortDHMS(endTime - startTime), TestInfo.suite(), TestInfo.name(), "FAIL", t);
         }
 
         @Override
         public void succeeded(Description description) {
+            Throwable t = null;
             endTime = System.currentTimeMillis();
-            if (TestManager.reporter != null) {
-                TestManager.reporter.update(millisToShortDHMS(endTime-startTime), TestInfo.suite(), TestInfo.name(), "PASS");
-            }
+            TestManager.reporter.update(time, millisToShortDHMS(endTime - startTime), TestInfo.suite(), TestInfo.name(), "PASS", t);
         }
     };
 
@@ -51,11 +48,9 @@ public class TestManager {
                 TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(duration));
         long seconds = TimeUnit.MILLISECONDS.toSeconds(duration) -
                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration));
-        long millis = TimeUnit.MILLISECONDS.toMillis(duration) -
-                TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(duration));
 
-        if (days == 0) res = String.format("%02d:%02d:%02d.%04d", hours, minutes, seconds, millis);
-        else res = String.format("%dd %02d:%02d:%02d.%04d", days, hours, minutes, seconds, millis);
+        if (days == 0) res = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        else res = String.format("%dd %02d:%02d:%02d", days, hours, minutes, seconds);
         return res;
     }
 }

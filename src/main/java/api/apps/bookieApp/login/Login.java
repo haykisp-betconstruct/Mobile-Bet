@@ -18,7 +18,7 @@ public class Login implements Activity {
             uiObject.buttonSignIn().waitToAppear(waitTime);
             uiObject.buttonCreateAccount().waitToAppear(waitTime);
             return Android.app.bookieApp.login;
-        }catch (AssertionError e){
+        } catch (AssertionError e) {
             throw new AssertionError("Login screen failed to load/open");
         }
     }
@@ -69,6 +69,16 @@ public class Login implements Activity {
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't write in Password field, element absent or blocked");
         }
+    }
+
+    public void tapTryAgain() {
+        try {
+            MyLogger.log.info("Tapping on TRY AGAIN button");
+            uiObject.buttonSignInDialogTryAgain();
+        } catch (NoSuchElementException e) {
+            throw new AssertionError("Can't tap TRY AGAIN button, element absent or blocked");
+        }
+
     }
 
 

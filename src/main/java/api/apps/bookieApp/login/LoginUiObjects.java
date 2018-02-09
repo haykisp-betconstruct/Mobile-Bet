@@ -15,11 +15,15 @@ public class LoginUiObjects {
             textSignInToStart,
             textForgotPassword,
             textClickHere,
-            errorPassword;
+            errorPassword,
+            textSignInDialogTitle,
+            textSignInDialogText,
+            buttonSignInDialogTryAgain;
 
 
     public UiObject buttonSignIn() {
-        if (buttonSignIn == null) buttonSignIn = new UiSelector().resourceId("com.betconstruct.bookie:id/sign_in").makeUiObject();
+        if (buttonSignIn == null)
+            buttonSignIn = new UiSelector().resourceId("com.betconstruct.bookie:id/sign_in").makeUiObject();
         return buttonSignIn;
     }
 
@@ -75,7 +79,26 @@ public class LoginUiObjects {
     }
 
     public UiObject errorPassword() {
-        if (errorPassword == null) errorPassword = new UiSelector().text("Password must be minimum of 6 characters").makeUiObject();
+        if (errorPassword == null)
+            errorPassword = new UiSelector().text("Password must be minimum of 6 characters").makeUiObject();
         return errorPassword;
+    }
+
+    public UiObject textSignInDialogTitle() {
+        if (textSignInDialogTitle == null)
+            textSignInDialogTitle = new UiSelector().resourceId("com.betconstruct.bookie:id/dialog_title_view").makeUiObject();
+        return textSignInDialogTitle;
+    }
+
+    public UiObject textSignInDialogText() {
+        if (textSignInDialogText == null)
+            textSignInDialogText = new UiSelector().resourceId("com.betconstruct.bookie:id/dialog_text").makeUiObject();
+        return textSignInDialogText;
+    }
+
+    public UiObject buttonSignInDialogTryAgain() {
+        if (buttonSignInDialogTryAgain == null)
+            buttonSignInDialogTryAgain = new UiSelector().resourceId("com.betconstruct.bookie:id/continue_button").makeUiObject();
+        return buttonSignInDialogTryAgain;
     }
 }

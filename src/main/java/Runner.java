@@ -14,7 +14,7 @@ public class Runner {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException {
 
-        MyLogger.log.setLevel(Level.INFO);
+        MyLogger.log.setLevel(Level.DEBUG);
         String xmlLocation = System.getProperty("user.dir")+"/result.html";
         MyLogger.log.info(xmlLocation);
         TestManager.setReporter(new HTML(new File(xmlLocation)));

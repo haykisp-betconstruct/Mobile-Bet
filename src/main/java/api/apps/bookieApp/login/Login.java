@@ -19,7 +19,7 @@ public class Login implements Activity {
             uiObject.buttonCreateAccount().waitToAppear(waitTime);
             return Android.app.bookieApp.login;
         } catch (AssertionError e) {
-            throw new AssertionError("Login screen failed to load/open");
+            throw new AssertionError("Login screen failed to load/open " + waitTime + " second");
         }
     }
 
@@ -74,7 +74,7 @@ public class Login implements Activity {
     public void tapTryAgain() {
         try {
             MyLogger.log.info("Tapping on TRY AGAIN button");
-            uiObject.buttonSignInDialogTryAgain();
+            uiObject.buttonSignInDialogTryAgain().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap TRY AGAIN button, element absent or blocked");
         }

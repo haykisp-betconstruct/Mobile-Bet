@@ -19,7 +19,7 @@ public class Profile implements Activity {
             uiObject.buttonMyBets().waitToAppear(waitTime);
             return Android.app.bookieApp.profile;
         } catch (AssertionError e) {
-            throw new AssertionError("Profile screen failed to load/open");
+            throw new AssertionError("Profile screen failed to load/open " + waitTime + " second");
         }
     }
 

@@ -15,13 +15,11 @@ public class Main implements Activity {
             MyLogger.log.info("Waiting to load Main screen");
             uiObject.actionExplore().waitToAppear(waitTime);
             uiObject.actionProfile().waitToAppear(waitTime);
-//            uiObject.actionBetCenter().waitToAppear(waitTime);
             uiObject.actionMore().waitToAppear(waitTime);
             uiObject.buttonFab().waitToAppear(waitTime);
-            uiObject.buttonSearch().waitToAppear(waitTime);
             return Android.app.bookieApp.main;
         } catch (AssertionError e) {
-            throw new AssertionError("Main screen failed to load/open");
+            throw new AssertionError("Main screen failed to load/open " + waitTime + " second");
         }
     }
 
@@ -58,24 +56,6 @@ public class Main implements Activity {
             uiObject.buttonFab().tap();
         } catch (NoSuchElementException e) {
             throw new AssertionError("Can't tap Fab button, element absent or blocked");
-        }
-    }
-
-    public void tapSearch() {
-        try {
-            MyLogger.log.info("Tapping on the Search button");
-            uiObject.buttonSearch().tap();
-        } catch (NoSuchElementException e) {
-            throw new AssertionError("Can't tap Search button, element absent or blocked");
-        }
-    }
-
-    public void writeSearch() {
-        try {
-            MyLogger.log.info("Writing in the Search field");
-            uiObject.buttonSearch().tap();
-        } catch (NoSuchElementException e) {
-            throw new AssertionError("Can't write in Search field, element absent or blocked");
         }
     }
 

@@ -20,7 +20,7 @@ public class Registration2 implements Activity {
             uiObject.buttonNext().waitToAppear(waitTime);
             return Android.app.bookieApp.registration2;
         } catch (AssertionError e) {
-            throw new AssertionError("Registration2 screen failed to load/open");
+            throw new AssertionError("Registration2 screen failed to load/open " + waitTime + " second");
         }
     }
 

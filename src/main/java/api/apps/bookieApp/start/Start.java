@@ -18,7 +18,7 @@ public class Start implements Activity {
             uiObject.buttonGetStarted().waitToAppear(waitTime);
             return Android.app.bookieApp.start;
         } catch (AssertionError e) {
-            throw new AssertionError("Start screen failed to load/open");
+            throw new AssertionError("Start screen failed to load/open in " + waitTime + " second");
         }
     }
 

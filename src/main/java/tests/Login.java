@@ -30,7 +30,7 @@ public class Login extends TestManager {
     @After
     public void after() {
         bookieApp.forceStop();
-//        bookieApp.clearData();
+        bookieApp.clearData();
     }
 
     @Test
@@ -80,6 +80,6 @@ public class Login extends TestManager {
         Assert.assertEquals("Invalid username or password.", bookieApp.login.uiObject.textSignInDialogText().getText());
         Assert.assertTrue(bookieApp.login.uiObject.buttonSignInDialogTryAgain().exists());
         bookieApp.login.tapTryAgain();
-        bookieApp.login.waitToLoad(1);
+        bookieApp.login.waitToLoad(15);
     }
 }

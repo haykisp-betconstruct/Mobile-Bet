@@ -155,10 +155,58 @@ public class UiObject {
         return this;
     }
 
-//    public UiObject scroll() {
-//        WebElement element;
-//        TouchAction tAction =new TouchAction(Android.driver);
-//        Android.driver.
-//    }
+    public UiObject scrollDownToFind(UiObject searchObject) {
+        WebElement element;
+        Timer timer = new Timer();
+        TouchAction action = new TouchAction(Android.driver);
+
+        if (isXpath()) element = Android.driver.findElementByXPath(locator);
+        else element = Android.driver.findElementByAndroidUIAutomator(locator);
+
+        int x = element.getLocation().x;
+        int y = element.getLocation().y;
+        int getX = element.getSize().width;
+        int getY = element.getSize().height;
+        int X = (getX - x) / 2;
+        int startY = y + getY - 5;
+        int endY = -1 * getY;
+
+        timer.start();
+        while (!searchObject.exists()) {
+            action.press(X, startY).moveTo(0, endY).release().perform();
+            if (timer.expired(15)) {
+                throw new AssertionError("Element " + searchObject.locator + "failed to find scrolling down " + locator + " 15 seconds!");
+            }
+        }
+        return this;
+    }
+
+    public UiObject scrollUpToFind(UiObject searchObject) {
+        WebElement element;
+        Timer timer = new Timer();
+        TouchAction action = new TouchAction(Android.driver);
+
+        if (isXpath()) element = Android.driver.findElementByXPath(locator);
+        else element = Android.driver.findElementByAndroidUIAutomator(locator);
+
+        int x = element.getLocation().x;
+        int y = element.getLocation().y;
+        int getX = element.getSize().width;
+        int getY = element.getSize().height;
+        int X = (getX - x) / 2;
+        int startY = y + 5;
+        int endY = getY;
+
+        timer.start();
+        while (!searchObject.exists()) {
+            action.press(X, startY).moveTo(0, endY).release().perform();
+            if (timer.expired(15)) {
+                throw new AssertionError("Element " + searchObject.locator + "failed to find scrolling up " + locator + " 15 seconds!");
+            }
+        }
+        return this;
+    }
+
+
 
 }

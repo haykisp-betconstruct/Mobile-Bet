@@ -10,7 +10,8 @@ public class MainUiObjects {
             actionProfile,
             actionMore,
             actionBetCenter,
-            buttonFab;
+            buttonFab,
+            windowBookmakers;
 
     public UiObject actionExplore() {
         if (actionExplore == null)
@@ -34,5 +35,10 @@ public class MainUiObjects {
         if (buttonFab == null)
             buttonFab = new UiSelector().resourceId("com.betconstruct.bookie:id/fab").makeUiObject();
         return buttonFab;
+    }
+    public UiObject windowBookmakers() {
+        if (windowBookmakers == null)
+            windowBookmakers = new UiSelector().resourceId("com.betconstruct.bookie:id/recycle_view").makeUiObject();
+        return windowBookmakers;
     }
 }
